@@ -1,2 +1,2 @@
-# manti-core-linguist
-A Manti-Core Platform package for polyglot application
+# Manti-core Linguist
+A Manti-Core Platform package for polyglot application using gRPC
