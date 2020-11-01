@@ -1,0 +1,132 @@
+<div class="collapse" id="{{resourceApi.name}}{{resourceGetApi.type}}Section{{$index}}">
+    <div class="card card-body">
+
+      <form>
+        <!-- Request body -->
+        <div ng-show="resourceGetApi.type !== 'get'" class="form-group">
+          <label for="reqBody">Request Body</label>
+          <textarea class="form-control" ng-model="resourceGetApi.reqBody" rows="10"></textarea>
+        </div>
+
+        <div ng-show="resourceGetApi.type == 'get'" class="form-row">
+          <div class="form-group col-md-6">
+            <div class="input-group">
+              <label>Request Parameters</label>
+            </div>
+          </div>
+        </div>
+        <div ng-show="resourceGetApi.type == 'get'" class="form-row">
+          <!-- Parameter display-->
+          <div class="form-group col-md-6">
+            <div class="input-group">
+              <input type="text" placeholder="Parameters" ng-model="inputParam[resourceApi.name+'-'+resourceGetApi.type]" aria-label="Parameter" class="form-control">
+              <input type="text" placeholder="Value" ng-model="inputValue[resourceApi.name+'-'+resourceGetApi.type]" aria-label="Value" class="form-control">
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary" ng-click="addParameters(resourceApi.name+'-'+resourceGetApi.type)" type="button">Add Param</button>
+              </div>
+            </div>
+          </div>
+
+          <div ng-show="resourceGetApi.type == 'get'" class="form-group col-md-6">
+            <!-- parameters display-->
+            <p ng-show="resourceGetApi.parameters.length == 0" class="text-center">No Parameter Value Pair added</p>
+            <div ng-show="resourceGetApi.parameters.length > 0" >
+              <!-- <label>Parameters</label> -->
+              <div class="list-group">
+                <a ng-repeat="parameter in resourceGetApi.parameters" ng-click="removeParameter({apiName: resourceApi.name+'-'+resourceGetApi.type, param: parameter.param, value:parameter.value})" class="list-group-item list-group-item-action">{{parameter.param}} = {{parameter.value}}</a>
+              </div>
+              <small class="form-text text-muted">
+                Click on the item to remove
+              </small>
+            </div>
+          </div>
+          
+        </div>
+
+        <div ng-show="resourceGetApi.type == 'get'" class="form-row">
+          <!-- Request Limit-->
+          <div class="form-group col-md-6">
+            <label for="reqLimit">Limit</label>
+            <input type="text" class="form-control" ng-model="resourceGetApi.reqLimit">
+          </div>
+
+          <!-- Request Offset-->
+          <div class="form-group col-md-6">
+            <label for="reqOffset">Offset</label>
+            <input type="text" class="form-control" ng-model="resourceGetApi.reqOffset">
+          </div>
+        </div>
+
+        <div ng-show="resourceGetApi.type == 'get'" class="form-row">
+          <!-- Request OrderBy-->
+          <div class="form-group col-md-6">
+            <div class="input-group">
+              <input type="text" placeholder="Order By" ng-model="inputOrder[resourceApi.name+'-'+resourceGetApi.type]" aria-label="Order By" class="form-control">
+              <select class="custom-select" ng-model="selOrder[resourceApi.name+'-'+resourceGetApi.type]" >
+                <option value="ASC">ASC</option>
+                <option value="DESC">DESC</option>
+              </select>
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary" ng-click="addOrderby(resourceApi.name+'-'+resourceGetApi.type)" type="button">Add Order</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Request Attributes-->
+          <div ng-show="resourceGetApi.type == 'get'" class="form-group col-md-6">
+            <div class="input-group">
+              <input type="text" placeholder="Attribute" ng-model="inputAttr[resourceApi.name+'-'+resourceGetApi.type]" aria-label="Order By" class="form-control">
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary" ng-click="addAttribute(resourceApi.name+'-'+resourceGetApi.type)" type="button">Add Attribute</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div ng-show="resourceGetApi.type == 'get'" class="form-row">
+          <!-- OrderBy display-->
+          <div class="form-group col-md-6">
+            <p ng-show="resourceGetApi.orderBys.length == 0" class="text-center">No Order Bys added</p>
+            <div ng-show="resourceGetApi.orderBys.length > 0" >
+              <label>Order By</label>
+              <div class="list-group">
+                <a ng-repeat="orderBy in resourceGetApi.orderBys" ng-click="removeOrderby({apiName: resourceApi.name+'-'+resourceGetApi.type, col: orderBy.col, order:orderBy.order})" class="list-group-item list-group-item-action">{{orderBy.col}} {{orderBy.order}}</a>
+              </div>
+              <small class="form-text text-muted">
+                Click on the item to remove
+              </small>
+            </div>
+          </div>
+          
+          <!-- Attributes display-->
+          <div class="form-group col-md-6">
+            <p ng-show="resourceGetApi.attributes.length == 0" class="text-center">No Attributes added</p>
+            <div ng-show="resourceGetApi.attributes.length > 0" >
+              <label>Attributes</label>
+              <div class="list-group">
+                <a ng-repeat="attribute in resourceGetApi.attributes" ng-click="removeAttribute({apiName: resourceApi.name+'-'+resourceGetApi.type, attr: attribute})" class="list-group-item list-group-item-action">{{attribute}}</a>
+              </div>
+              <small class="form-text text-muted">
+                Click on the item to remove
+              </small>
+            </div>
+          </div>
+        </div>
+        
+        <button class="btn btn-primary" ng-click="test(resourceApi.name, resourceGetApi)" >Send</button>
+
+        <hr>
+        <div class="form-group">
+          <label>Request Sent</label>
+          <p class="text-left">{{resourceGetApi.request}}</p>
+          <textarea ng-show="resourceGetApi.type !== 'get'" class="form-control" ng-model="resourceGetApi.sendRequestBody" rows="10" readonly >Display the request sent</textarea>
+        </div>
+        <div class="form-group">
+          <label>Response</label>
+          <textarea class="form-control" ng-model="resourceGetApi.response" rows="10" readonly >Display the response recieved</textarea>
+          {{resourceGetApi.responseTime}}
+        </div>
+
+      </form>
+    </div>
+  </div>

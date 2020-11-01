@@ -1,0 +1,105 @@
+<script src="../script/linguist/js/clientsManage.js"></script>
+<!-- Page Heading -->
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+  <h1 class="h3 mb-0 text-gray-800">Manage Clients</h1>
+</div>
+
+<div ng-app="clientsManageApp" ng-controller="clientsManageCtrl">
+  <div class="dropdown">
+    <div class="form-group">
+      <label>View Service</label>
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        {{selectedService}}
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a ng-repeat="service in data.allServices" ng-click="selectService(service.serviceName)" class="dropdown-item" href="#">{{service.serviceName}}</a>
+      </div>
+      <button type="button" class="btn btn-danger" ng-show="isViewing" ng-click="removeClientService()">Remove Service</button>
+    </div>
+  </div>
+
+  <ul class="nav nav-tabs" id="myTab" role="tablist" ng-show="isViewing">
+    <li class="nav-item">
+      <a class="nav-link active" id="address-tab" data-toggle="tab" href="#address" role="tab" aria-controls="address" aria-selected="true">Server Endpoints</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="proto-tab" data-toggle="tab" href="#proto" role="tab" aria-controls="proto" aria-selected="false">Proto Buffer File</a>
+    </li>
+  </ul>
+  <div class="tab-content" id="myTabContent" ng-show="isViewing">
+    <div class="tab-pane fade show active" id="address" role="tabpanel" aria-labelledby="address-tab">
+
+      <div class="form-group row">
+        <label for="clientAddress" class="col-sm-2 col-form-label">Address & Port</label>
+        <div class="col-sm-10">
+          <input type="text" ng-model="currEndpoint" class="form-control" id="clientAddress" placeholder="ip address:port">
+        </div>
+      </div>
+      <button type="button" class="btn btn-primary" ng-click="saveEndpoint()">Save</button>
+    </div>
+    <div class="tab-pane fade" id="proto" role="tabpanel" aria-labelledby="proto-tab">
+      <div>
+        <div id="editor" style="width:100%;height:calc(100vh - 400px);"></div>
+        <button type="button" class="btn btn-primary" ng-click="saveProtoContent()">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- DataTables Example -->
+<!-- <div class="card shadow mb-4" ng-app="apiResNewApp" ng-controller="apiResNewCtrl">
+  <div class="card-header py-3">
+    <h6 class="m-0 font-weight-bold text-primary"></h6>
+  </div>
+<div class="card-body">
+  <div class="table-responsive"> -->
+    <!-- <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" >
+      <thead>
+        <tr>
+          <th>Model</th>
+          <th>Status</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tfoot>
+        <tr>
+          <th>Model</th>
+          <th>Status</th>
+          <th></th>
+        </tr>
+      </tfoot>
+      <tbody>
+        <tr ng-repeat="model in allModels">
+          <td>{{model.model}}</td>
+          <td ng-if="model.generated"> <span class="badge badge-success">API Generated</span> </td>
+          <td ng-if="!model.generated"> <span class="badge badge-secondary">API Not Generated</span></td>
+          <td ng-if="model.generated">
+            <a href="#" class="btn btn-primary btn-icon-split btn-sm"  ng-click="generate(model.model)">
+              <span class="icon text-white-50">
+                <i class="fas fa-redo-alt"></i>
+              </span>
+              <span class="text">Re-Generate</span>
+            </a>
+            <a href="#" class="btn btn-danger btn-icon-split btn-sm"  ng-click="delete(model.model)">
+              <span class="icon text-white-50">
+                <i class="fas fa-trash"></i>
+              </span>
+              <span class="text">Delete</span>
+            </a>
+          </td>
+          <td ng-if="!model.generated">
+            <a href="#" class="btn btn-primary btn-icon-split btn-sm"  ng-click="generate(model.model)">
+              <span class="icon text-white-50">
+                <i class="fas fa-pencil-alt"></i>
+              </span>
+              <span class="text">Generate</span>
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table> -->
+<!--   </div>
+</div>
+<div class="card-footer small text-muted"></div>
+</div> -->

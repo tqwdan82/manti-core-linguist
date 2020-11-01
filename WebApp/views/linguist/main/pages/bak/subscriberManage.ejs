@@ -1,0 +1,101 @@
+<script src="/script/maestro/js/subscription.js"></script>
+<div id="overlay">
+  <div class="text text-center">
+    <div class="spinner-border" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+</div>
+
+<!-- Page Heading -->
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+  <h1 class="h3 mb-0 text-gray-800">Manage Subscribers</h1>
+</div>
+
+<div ng-app="viewSubscriberApp" ng-controller="viewSubscriberCtrl">
+
+  <div class="col-lg-12 mb-2">
+    <a href="./main?parent=Subscriber&actionName=New Subscriber&action=newSubscriberEditor" class="btn btn-primary btn-icon-split btn-sm">
+      <span class="icon text-white-50">
+        <i class="fas fa-edit"></i>
+      </span>
+      <span class="text">New Subcriber</span>
+    </a>
+  </div>
+
+  <div class="card-body" ng-if="!hasAppServices">
+    <p class="text-center">No Applications found</p>
+  </div>
+  <div class="col-lg-12" ng-if="hasAppServices">
+
+    <div class="card shadow mb-4" ng-repeat="appSvc in appServices">
+      <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Application: {{appSvc.app}}</h6>
+      </div>
+      <div class="card-body">
+        
+        <div class="card shadow mb-4" ng-repeat="svc in appSvc.services">
+          <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Service: {{svc.serviceName}}</h6>
+          </div>
+          <div class="card-body">
+
+            <div class="table-responsive">
+              <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" >
+                <thead>
+                  <tr>
+                    <th>Subscriber</th>
+                    <th>Description</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tfoot>
+                  <tr>
+                    <th>Subscriber</th>
+                    <th>Description</th>
+                    <th></th>
+                  </tr>
+                </tfoot>
+                <tbody>
+                  <tr ng-repeat="sub in svc.subscribers">
+                    <td>{{sub.subscriber}}</td>
+                    <td>
+                      <p class="mb-2"><b>Topic</b>: {{sub.topic}}</p>
+                      <p class="mb-2">{{sub.description}}</p>
+                    </td>
+                    <td>
+                      <!-- <button ng-click="edit()">Edit</button> -->
+                      <!-- <button ng-click="delete(key)">Delete</button> -->
+                      <a href="./main?parent=Subscriber&actionName=Edit Subscriber&action=subscriberEditor&application={{appSvc.app}}&service={{svc.serviceName}}&subscriber={{sub.subscriber}}" class="btn btn-primary btn-icon-split btn-sm">
+                        <span class="icon text-white-50">
+                          <i class="fas fa-edit"></i>
+                        </span>
+                        <span class="text">Edit</span>
+                      </a>
+                      <a href="#" class="btn btn-danger btn-icon-split btn-sm"  ng-click="delete(appSvc.app, svc.serviceName, sub.subscriber)">
+                        <span class="icon text-white-50">
+                          <i class="fas fa-trash"></i>
+                        </span>
+                        <span class="text">Delete</span>
+                      </a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+          </div>
+        </div>
+        
+        
+        
+        
+        
+        
+        
+      </div>
+      <div class="card-footer small text-muted"></div>
+    </div>
+
+  </div>
+</div>

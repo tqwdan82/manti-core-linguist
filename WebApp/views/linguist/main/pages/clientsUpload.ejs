@@ -1,0 +1,17 @@
+<script src="../script/linguist/js/clientsUpload.js"></script>
+
+<!-- Page Heading -->
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Upload Definitions</h1>
+</div>
+
+<div ng-app="clientsUploadApp" ng-controller="clientsUploadCtrl">
+
+    <div class="input-group">
+
+        <input type="file" id="customFile" class="custom-file-input" file-model="clientDefFile">
+        <label class="custom-file-label" for="customFile">Choose file</label>
+        <button type="button" class="btn btn-primary" ng-click="uploadFile()" data-dismiss="modal">Upload</button>
+
+    </div>
+</div>

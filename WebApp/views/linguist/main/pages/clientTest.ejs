@@ -1,0 +1,52 @@
+<script src="../script/linguist/js/clientTest.js"></script>
+
+<!-- Page Heading -->
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Client Test</h1>
+</div>
+
+<div ng-app="clientTestApp" ng-controller="clientTestCtrl">
+  <div class="row">
+    <!-- select service group / directory-->
+    <div class="dropdown col-sm-3">
+      <div class="form-group">
+        <label>Service Group</label>
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          {{selectedServiceGrp}}
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a ng-repeat="serviceGroup in serviceGroups" ng-click="selectServiceGrp(serviceGroup)" class="dropdown-item" href="#">{{serviceGroup}}</a>
+        </div>
+      </div>
+    </div>
+    <!-- select service -->
+    <div class="dropdown col-sm-3" ng-show="isViewing">
+      <div class="form-group">
+        <label>Service</label>
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          {{selectedService}}
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a ng-repeat="service in services" ng-click="selectService(service)" class="dropdown-item" href="#">{{service}}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <form ng-show="isSelected">
+    <!-- Request body -->
+    <div class="form-group">
+      <label for="reqBody">Request Body</label>
+      <textarea class="form-control" ng-model="requestBody" rows="10"></textarea>
+    </div>
+
+    <button class="btn btn-primary" ng-click="test()" >Send</button>
+
+    <hr>
+    <div class="form-group">
+      <label>Response</label>
+      <textarea class="form-control" ng-model="reqResponse" rows="10" readonly >Display the response recieved</textarea>
+    </div>
+
+  </form>
+</div>

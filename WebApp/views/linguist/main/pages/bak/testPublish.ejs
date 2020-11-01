@@ -1,0 +1,29 @@
+<script src="/script/maestro/js/subscription.js"></script>
+<div id="overlay">
+  <div class="text text-center">
+    <div class="spinner-border" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+</div>
+
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+  <h1 class="h3 mb-0 text-gray-800">Test Publish</h1>
+</div>
+
+<form role="form" method="GET" action="" ng-app="testPublishApp" ng-controller="testPublishCtrl">
+  <div class="row">
+    <div class="form-group col-lg-12 md-3" >
+      <label for="key">Topic</label>
+      <input class="form-control" name="key" ng-model="data.topic">
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group col-lg-12 md-3" >
+      <label for="testMessage">Publish Data</label>
+      <textarea class="form-control" id="testMessage" name="testMessage" rows="5" ng-model="data.data"></textarea>
+    </div>
+  </div>
+  <button type="button" class="btn btn-primary" ng-click="test()">Test</button>
+</form>
+

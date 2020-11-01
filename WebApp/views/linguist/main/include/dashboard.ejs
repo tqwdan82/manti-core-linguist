@@ -1,0 +1,78 @@
+<script src="../script/linguist/js/dashboard.js"></script>
+
+<!-- Page Heading -->
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+  <h1 class="h3 mb-0 text-gray-800">Server Status</h1>
+</div>
+
+<div ng-app="dashboardApp" ng-controller="dashboardCtrl">
+  <!-- Content Row -->
+  <div class="row">
+    <!-- state display -->
+    <div class="col-xl-6 col-md-6 mb-4" ng-show="state">
+      <div class="card bg-success border-left-success shadow h-100 py-2">
+        <div class="card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+              <div class="h5 mb-0 font-weight-bold text-white">Updated</div>
+            </div>
+            <div class="col-auto">
+              <i class="fas fa-sync fa-2x text-gray-100"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-6 col-md-6 mb-4" ng-show="!state">
+      <div class="card bg-danger border-left-danger shadow h-100 py-2">
+        <div class="card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+              <div class="h5 mb-0 font-weight-bold text-white">Not updated</div>
+            </div>
+            <div class="col-auto">
+              <i class="fas fa-sync fa-2x text-gray-100"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- status display -->
+    <div class="col-xl-6 col-md-6 mb-4" ng-show="started">
+      <div class="card bg-success border-left-success shadow h-100 py-2">
+        <div class="card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+              <div class="h5 mb-0 font-weight-bold text-white">Started</div>
+            </div>
+            <div class="col-auto">
+              <i class="fas fa-server fa-2x text-gray-100"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-6 col-md-6 mb-4" ng-show="!started">
+      <div class="card bg-danger border-left-danger shadow h-100 py-2">
+        <div class="card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+              <div class="h5 mb-0 font-weight-bold text-white">Stopped</div>
+            </div>
+            <div class="col-auto">
+              <i class="fas fa-server fa-2x text-gray-100"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="row">
+    <div class="col-xl-3 col-md-3 mb-4"></div>
+    <div class="col-xl-3 col-md-3 mb-4"><button ng-click="restart()" type="button" class="btn btn-primary btn-block">RESTART</button></div>
+    <div class="col-xl-3 col-md-3 mb-4"><button ng-click="stopServer()" type="button" class="btn btn-danger btn-block">STOP</button></div>
+    <div class="col-xl-3 col-md-3 mb-4"></div>
+  </div>
+</div>

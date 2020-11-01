@@ -1,0 +1,36 @@
+<script src="/script/maestro/js/subscription.js"></script>
+<div id="overlay">
+  <div class="text text-center">
+    <div class="spinner-border" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+</div>
+
+<!-- Page Heading -->
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">New Subscriber</h1>
+</div>
+
+<div ng-app="newSubEditorApp" ng-controller="newSubEditorCtrl" >
+  <div class="row mb-2">
+    <div class="form-group">
+      <label for="application">Application Name</label>
+      <input class="form-control" name="application" ng-model="data.application">
+    </div>
+    <div class="form-group col-lg-4">
+      <div class="form-group">
+        <label for="service">Service Name</label>
+        <input class="form-control" name="service" ng-model="data.service">
+      </div>
+    </div>
+    <div class="form-group col-lg-4">
+      <div class="form-group">
+        <label for="subscriber">Subscriber Name</label>
+        <input class="form-control" name="subscriber" ng-model="data.subscriber">
+      </div>
+    </div>
+  </div>
+  <div id="editor" style="width:100%;height:calc(100vh - (4.375rem + 285px));"></div>
+  <button type="button" class="btn btn-primary" ng-click="saveSubscriber()">Save</button>
+</div>

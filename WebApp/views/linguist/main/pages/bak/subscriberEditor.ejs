@@ -1,0 +1,15 @@
+<script src="/script/maestro/js/subscription.js"></script>
+<!-- Page Heading -->
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Edit Subscriber: <%- application -%>.<%- service -%>.<%- subscriber -%></h1>
+</div>
+
+<div ng-app="subEditorApp" ng-controller="subEditorCtrl" 
+  ng-init="application='<%- application -%>';
+  service='<%- service -%>';
+  subscriber='<%- subscriber -%>';
+  init();"
+>
+  <div id="editor" style="width:100%;height:calc(100vh - (4.375rem + 245px));"></div>
+  <button type="button" class="btn btn-primary" ng-click="saveSubscriber()">Save</button>
+</div>

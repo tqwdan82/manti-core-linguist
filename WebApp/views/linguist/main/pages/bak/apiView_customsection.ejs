@@ -1,0 +1,132 @@
+<div class="collapse" id="custom{{customizedApi.apiName}}{{customizedApi.actionType}}Section{{$index}}">
+    <div class="card card-body">
+      <p class="text-justify">{{customizedApi.description}}</p>
+      <form>
+        <!-- Request body -->
+        <div ng-show="customizedApi.actionType !== 'get'" class="form-group">
+          <label for="reqBody">Request Body</label>
+          <textarea class="form-control" ng-model="customizedApi.reqBody" rows="10"></textarea>
+        </div>
+
+        <div ng-show="customizedApi.actionType == 'get'" class="form-row">
+          <div class="form-group col-md-6">
+            <div class="input-group">
+              <label>Request Parameters</label>
+            </div>
+          </div>
+        </div>
+        <div ng-show="customizedApi.actionType == 'get'" class="form-row">
+          <!-- Parameter display-->
+          <div class="form-group col-md-6">
+            <div class="input-group">
+              <input type="text" placeholder="Parameters" ng-model="inputParam[customizedApi.name+'-'+customizedApi.actionType]" aria-label="Parameter" class="form-control">
+              <input type="text" placeholder="Value" ng-model="inputValue[customizedApi.name+'-'+customizedApi.actionType]" aria-label="Value" class="form-control">
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary" ng-click="addParameters(customizedApi.name+'-'+customizedApi.actionType, true)" type="button">Add Param</button>
+              </div>
+            </div>
+          </div>
+
+          <div ng-show="customizedApi.actionType == 'get'" class="form-group col-md-6">
+            <!-- parameters display-->
+            <p ng-show="customizedApi.parameters.length == 0" class="text-center">No Parameter Value Pair added</p>
+            <div ng-show="customizedApi.parameters.length > 0" >
+              <label>Parameters</label>
+              <div class="list-group">
+                <a ng-repeat="parameter in customizedApi.parameters" ng-click="removeParameter({apiName: customizedApi.name+'-'+customizedApi.actionType, param: parameter.param, value:parameter.value}, true)" class="list-group-item list-group-item-action">{{parameter.param}} = {{parameter.value}}</a>
+              </div>
+              <small class="form-text text-muted">
+                Click on the item to remove
+              </small>
+            </div>
+          </div>
+          
+        </div>
+
+        <div ng-show="customizedApi.actionType == 'get'" class="form-row">
+          <!-- Request Limit-->
+          <div class="form-group col-md-6">
+            <label for="reqLimit">Limit</label>
+            <input type="text" class="form-control" ng-model="customizedApi.reqLimit">
+          </div>
+
+          <!-- Request Offset-->
+          <div class="form-group col-md-6">
+            <label for="reqOffset">Offset</label>
+            <input type="text" class="form-control" ng-model="customizedApi.reqOffset">
+          </div>
+        </div>
+
+        <div ng-show="customizedApi.actionType == 'get'" class="form-row">
+          <!-- Request OrderBy-->
+          <div class="form-group col-md-6">
+            <div class="input-group">
+              <input type="text" placeholder="Order By" ng-model="inputOrder[customizedApi.name+'-'+customizedApi.actionType]" aria-label="Order By" class="form-control">
+              <select class="custom-select" ng-model="selOrder[customizedApi.name+'-'+customizedApi.actionType]" >
+                <option value="ASC">ASC</option>
+                <option value="DESC">DESC</option>
+              </select>
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary" ng-click="addOrderby(customizedApi.name+'-'+customizedApi.actionType, true)" type="button">Add Order</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Request Attributes-->
+          <div ng-show="customizedApi.actionType == 'get'" class="form-group col-md-6">
+            <div class="input-group">
+              <input type="text" placeholder="Attribute" ng-model="inputAttr[customizedApi.name+'-'+customizedApi.actionType]" aria-label="Attribute" class="form-control">
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary" ng-click="addAttribute(customizedApi.name+'-'+customizedApi.actionType, true)" type="button">Add Attribute</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div ng-show="customizedApi.actionType == 'get'" class="form-row">
+          <!-- OrderBy display-->
+          <div class="form-group col-md-6">
+            <p ng-show="customizedApi.orderBys.length == 0" class="text-center">No Order Bys added</p>
+            <div ng-show="customizedApi.orderBys.length > 0" >
+              <label>Order By</label>
+              <div class="list-group">
+                <a ng-repeat="orderBy in customizedApi.orderBys" ng-click="removeOrderby({apiName: customizedApi.name+'-'+customizedApi.actionType, col: orderBy.col, order:orderBy.order}, true)" class="list-group-item list-group-item-action">{{orderBy.col}} {{orderBy.order}}</a>
+              </div>
+              <small class="form-text text-muted">
+                Click on the item to remove
+              </small>
+            </div>
+          </div>
+          
+          <!-- Attributes display-->
+          <div class="form-group col-md-6">
+            <p ng-show="customizedApi.attributes.length == 0" class="text-center">No Attributes added</p>
+            <div ng-show="customizedApi.attributes.length > 0" >
+              <label>Attributes</label>
+              <div class="list-group">
+                <a ng-repeat="attribute in customizedApi.attributes" ng-click="removeAttribute({apiName: customizedApi.name+'-'+customizedApi.actionType, attr: attribute}, true)" class="list-group-item list-group-item-action">{{attribute}}</a>
+              </div>
+              <small class="form-text text-muted">
+                Click on the item to remove
+              </small>
+            </div>
+          </div>
+        </div>
+        
+        <button class="btn btn-primary" ng-click="test(customizedApi.apiName, customizedApi)" >Send</button>
+
+        <hr>
+        <div class="form-group">
+          <label>Request Sent</label>
+          <p class="text-left">{{customizedApi.request}}</p>
+          <textarea ng-show="customizedApi.actionType !== 'get'" class="form-control" ng-model="customizedApi.sendRequestBody" rows="10" readonly >Display the request sent</textarea>
+        </div>
+        <div class="form-group">
+          <label>Response</label>
+          <textarea class="form-control" ng-model="customizedApi.response" rows="10" readonly >Display the response recieved</textarea>
+          {{customizedApi.responseTime}}
+        </div>
+
+      </form>
+    </div>
+  </div>
